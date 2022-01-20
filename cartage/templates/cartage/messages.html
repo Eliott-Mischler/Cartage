@@ -1,0 +1,77 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <title>Ma messagerie - Cartage</title>
+    <style>
+        .sent
+        {
+           color:red;
+        }
+        .received
+        {
+           color:blue;
+        }
+        .d
+        {
+            font-style:italic
+        }
+
+    </style>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="{% static 'style.css'%}">
+</head>
+<body>
+    <div class="banner">
+    <nav id="container">
+        <a href="{% url 'cartage:home' %}" class="home up"></a>
+        <a href="{% url 'cartage:search' %}" class="findUser up"></a>
+        <a href="{% url 'cartage:trips'%}" class="trips up"></a>
+        <a href="{% url 'cartage:messages' %}" class="messages upTargeted"></a>
+        <a href="{% url 'cartage:help' %}" class="help up"></a>
+        <a href="{% url 'cartage:profile' %}" class="account up"></a>
+
+        <a href="{% url 'cartage:home' %}" class="linknav"></a>
+        <a href="{% url 'cartage:search' %}" class="linknav">Trouver un binôme</a>
+        <a href="{% url 'cartage:trips'%}" class="linknav">Mes Trajets</a>
+        <a href="{% url 'cartage:messages' %}" class="linknavTargeted">Messagerie</a>
+        <a href="{% url 'cartage:help' %}" class="linknav">Aide</a>
+        <a href="{% url 'cartage:profile' %}" class="linknav">Mon Profil</a>
+    </nav>
+</div>
+    <h1>Messagerie</h1>
+
+        {% for contact, messages in users_and_messages %}
+            {{contact.firstname}} {{contact.lastname}}
+            {% for message in messages %}
+                {% if message.sender == user.id %}
+                    <p class="sent d">On {{message.date}}, {{contact.firstname}} sent:</p>
+                    <p class="sent">{{message.content}}</p>
+                {% elif message.sender == contact.id %}
+                    <p class="received d">On {{message.date}}:</p>
+                    <p class="received">{{message.content}}</p>
+                {% else %}
+                    <p> stinky </p>
+                {% endif %}
+            {% empty %}
+                <p>Dites coucou !</p>
+            {% endfor %}
+            <form action="{% url 'cartage:messages' %}" method="POST"> {% csrf_token %}
+                <label for="message{{contact.id}}"></label>
+                <input type="text" name="message" class="placeholder:italic placeholder:text-slate-400 mt-1 border border-slate-400 rounded-md text-sm shadow-sm placeholder-slate-400
+                focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500" placeholder="Ecrivez votre message" id="message{{contact.id}}">
+                <input type="checkbox" style="display:none;" name="target" id="target{{contact.id}}" value="{{contact.id}}" checked>
+                <button type="submit" class="mt-4 ml-8 bg-sky-400 rounded-full px-4 py-1 text-s font-semibold text-white
+                hover:bg-blue-400 active:bg-blue-700
+                focus:outline-none focus:ring focus:ring-blue-300">Envoyer un message à {{contact.firstname}}</button>
+
+            </form>
+            <br> <br>
+        {%endfor%}
+
+
+</body>
+</html>

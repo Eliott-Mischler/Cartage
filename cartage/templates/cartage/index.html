@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <title>Bienvenue sur Cartage !</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+</head>
+<body>
+
+  {% if type %}
+        <h1>{{type}} Bienvenue {{user.firstname}}</h1>
+  {% endif %}
+  {% if user.is_anonymous %}
+  <form method="GET" action="{% url 'cartage:login' %}">
+        <button class="transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 hover:bg-indigo-500 duration-300 bg-violet-500 rounded-full px-4 py-1 text-sm font-semibold text-white
+        hover:bg-violet-400 active:bg-violet-700
+        focus:outline-none focus:ring focus:ring-violet-300 "
+        action="{% url 'cartage:login'%}" type="submit">Se connecter</button>
+      </form>
+    <form method="GET" action="{% url 'cartage:register' %}">
+        <button class="transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 hover:bg-indigo-500 duration-300 bg-blue-500 rounded-full px-6 py-0.5 text-s font-semibold text-white
+        hover:bg-blue-400 active:bg-blue-700
+        focus:outline-none focus:ring focus:ring-blue-300"
+        type="submit">S'inscrire</button>
+        </form>
+  {% else %}
+
+
+<div class="banner">
+    <nav id="container">
+        <a href="{% url 'cartage:home' %}" class="home up"></a>
+        <a href="{% url 'cartage:search' %}" class="findUser upTargeted"></a>
+        <a href="{% url 'cartage:trips'%}" class="trips up"></a>
+        <a href="{% url 'cartage:messages' %}" class="messages up"></a>
+        <a href="{% url 'cartage:help' %}" class="help up"></a>
+        <a href="{% url 'cartage:profile' %}" class="account up"></a>
+
+        <a href="{% url 'cartage:home' %}" class="linknav"></a>
+        <a href="{% url 'cartage:search' %}" class="linknavTargeted">Trouver un binôme</a>
+        <a href="{% url 'cartage:trips'%}" class="linknav">Mes Trajets</a>
+        <a href="{% url 'cartage:messages' %}" class="linknav">Messagerie</a>
+        <a href="{% url 'cartage:help' %}" class="linknav">Aide</a>
+        <a href="{% url 'cartage:profile' %}" class="linknav">Mon Profil</a>
+    </nav>
+</div>
+  {% endif %}
+
+
+</body>
+</html>

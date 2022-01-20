@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Search</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+</head>
+<body>
+<div class="banner">
+    <nav id="container">
+        <a href="{% url 'cartage:home' %}" class="home up"></a>
+        <a href="{% url 'cartage:search' %}" class="findUser upTargeted"></a>
+        <a href="{% url 'cartage:trips'%}" class="trips up"></a>
+        <a href="{% url 'cartage:messages' %}" class="messages up"></a>
+        <a href="{% url 'cartage:help' %}" class="help up"></a>
+        <a href="{% url 'cartage:profile' %}" class="account up"></a>
+
+        <a href="{% url 'cartage:home' %}" class="linknav"></a>
+        <a href="{% url 'cartage:search' %}" class="linknavTargeted">Trouver un binôme</a>
+        <a href="{% url 'cartage:trips'%}" class="linknav">Mes Trajets</a>
+        <a href="{% url 'cartage:messages' %}" class="linknav">Messagerie</a>
+        <a href="{% url 'cartage:help' %}" class="linknav">Aide</a>
+        <a href="{% url 'cartage:profile' %}" class="linknav">Mon Profil</a>
+    </nav>
+</div>
+<!--- match list with hidden form to add to contacts  --->
+<h1 class="text-xl">Suggestions de binôme :</h1>
+{%for match in matches%}
+<div>
+    <h2>{{match.firstname}} {{match.lastname}}</h2>
+    <h3> {{match.address}} </h3>
+    <h3>{%if match.car%} Voiture disponible {% else %} Pas de voiture {% endif %}</h3>
+    <form action="{% url 'cartage:messages' %}" method="POST">
+        {% csrf_token %}
+        <input type="checkbox" style="display: none;" name="match" id="match{{match.id}}" value="{{match.id}}" checked>
+        <button type="submit" class="bg-blue-200 rounded-full px-4 py-1 text-sm font-semibold text-slate-700
+        hover:bg-blue-100 active:bg-blue-500
+        focus:outline-none focus:ring focus:ring-blue-400"><img src="{% static 'content/message.svg'%}" class="w-5">Contacter</button>
+    </form>
+</div>
+{% endfor %}
+</body>
+</html>

@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <title>S'inscrire</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+</head>
+<body>
+<form action="{% url 'cartage:landingR' %}" method="POST"> {%csrf_token%}
+    <fieldset id="background" class="border-2 rounded shadow-sm border-slate-400 formulaire bg-slate-100">
+        <div class="questions">
+        <label for="firstname" class="block text-m">Prénom</label>
+        <input type="text" name="firstname" id="firstname" required
+        class="placeholder:italic placeholder:text-slate-400 mt-1 border border-slate-400 rounded-md text-sm shadow-sm placeholder-slate-400
+        focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500
+        invalid:border-pink-500 invalid:text-pink-600
+        focus:invalid:border-pink-500 focus:invalid:ring-pink-500"
+        placeholder="Prénom">
+        <span class="mt-2 invisible peer-invalid:visible text-pink-600 text-sm">
+            Entrez un prénom.
+        </span>
+        <label for="lastname" class="block text-m">Nom</label>
+        <input type="text" name="lastname" id="lastname" required
+        class="placeholder:italic placeholder:text-slate-400 mt-1 border border-slate-400 rounded-md text-sm shadow-sm placeholder-slate-400
+        focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500
+        invalid:border-pink-500 invalid:text-pink-600
+        focus:invalid:border-pink-500 focus:invalid:ring-pink-500"
+        placeholder="Nom"> <br>
+        <label for="street" class="block text-m">Rue</label>
+        <input type="text" name="street" id="street" required
+        class="placeholder:italic placeholder:text-slate-400 mt-1 border border-slate-400 rounded-md text-sm shadow-sm placeholder-slate-400
+        focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500
+        invalid:border-pink-500 invalid:text-pink-600
+        focus:invalid:border-pink-500 focus:invalid:ring-pink-500"
+        placeholder="Rue"> <br>
+        <label for="zip_code" class="block text-m">Code Postal</label>
+        <input type="number" name="zip_code" id="zip_code" required
+        class="placeholder:italic placeholder:text-slate-400 mt-1 border border-slate-400 rounded-md text-sm shadow-sm placeholder-slate-400
+        focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500
+        invalid:border-pink-500 invalid:text-pink-600
+        focus:invalid:border-pink-500 focus:invalid:ring-pink-500"
+        placeholder="Code Postal"> <br>
+        <label for="city" class="block text-m">Ville</label>
+        <input type="text" name="city" id="city" required
+        class="placeholder:italic placeholder:text-slate-400 mt-1 border border-slate-400 rounded-md text-sm shadow-sm placeholder-slate-400
+        focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500
+        invalid:border-pink-500 invalid:text-pink-600
+        focus:invalid:border-pink-500 focus:invalid:ring-pink-500"
+        placeholder="Ville"> <br>
+        <label for="email" class="block text-m">Email</label>
+        <input type="email" name="email" id="email" required
+        class="placeholder:italic placeholder:text-slate-400 peer mt-1 border border-slate-400 rounded-md text-sm shadow-sm placeholder-slate-400
+        focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500
+        invalid:border-pink-500 invalid:text-pink-600
+        focus:invalid:border-pink-500 focus:invalid:ring-pink-500"
+        placeholder="adresse-mail@exemple.fr">
+        <span class="mt-2 invisible peer-invalid:visible text-pink-600 text-sm">
+            Entrez un Email valide.
+        </span> <br>
+        <label for="tel" class="block text-m">N° de téléphone</label>
+        <input type="number" name="tel" id="tel" required
+        class="placeholder:italic placeholder:text-slate-400 mt-1 border border-slate-400 rounded-md text-sm shadow-sm placeholder-slate-400
+        focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500
+        invalid:border-pink-500 invalid:text-pink-600
+        focus:invalid:border-pink-500 focus:invalid:ring-pink-500"
+        placeholder="0660606060"> <br>
+        <label for="password" class="block text-m">Mot de passe</label>
+        <input type="password" name="password" id="password" required
+        class="placeholder:italic placeholder:text-slate-400 mt-1 border border-slate-400 rounded-md text-sm shadow-sm placeholder-slate-400
+        focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500
+        invalid:border-pink-500 invalid:text-pink-600
+        focus:invalid:border-pink-500 focus:invalid:ring-pink-500"
+        placeholder="******"> <br>
+        <label for="hasCar" >J'ai une voiture</label>
+        <input type="radio" name="car" id="hasCar" value="1"   checked
+        class="mt-1 border border-slate-400 rounded-md text-sm shadow-sm placeholder-slate-400
+        focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500
+        invalid:border-pink-500 invalid:text-pink-600
+        focus:invalid:border-pink-500 focus:invalid:ring-pink-500"> <br>
+        <label for="noCar" >Je n'ai pas de voiture</label>
+        <input type="radio" name="car" id="noCar" value="0"
+        class="mt-1 border border-slate-400 rounded-md text-sm shadow-sm placeholder-slate-400
+        focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500
+        invalid:border-pink-500 invalid:text-pink-600
+        focus:invalid:border-pink-500 focus:invalid:ring-pink-500"> <br>
+        <label for="hours" class=" text-m">Heures :</label>
+        <input type="number" name="hours" id="hours" required
+        class="mt-1 border border-slate-400 rounded-md text-sm shadow-sm placeholder-slate-400
+        focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500
+        invalid:border-pink-500 invalid:text-pink-600
+        focus:invalid:border-pink-500 focus:invalid:ring-pink-500"
+        value="0"> <br>
+        <button type="submit" class="mt-4 ml-8 bg-sky-400 rounded-full px-4 py-1 text-s font-semibold text-white
+        hover:bg-blue-400 active:bg-blue-700
+        focus:outline-none focus:ring focus:ring-blue-300" >S'inscrire</button>
+    </div>
+    </fieldset>
+</form>
+</body>
+</html>

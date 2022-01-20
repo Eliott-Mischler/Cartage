@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Mes voyages</title>
+    <style>
+        table, tr, td, th {
+         border: 1px solid black;
+        }
+    </style>
+        <script src="https://cdn.tailwindcss.com"></script>
+        <link rel="stylesheet" href="{% static 'style.css' %}">
+        <script src="{% static 'js/trip.js'%}" defer></script>
+</head>
+<body>
+
+    <div class="banner">
+    <nav id="container">
+        <a href="{% url 'cartage:home' %}" class="home up"></a>
+        <a href="{% url 'cartage:search' %}" class="findUser up"></a>
+        <a href="{% url 'cartage:trips'%}" class="trips upTargeted"></a>
+        <a href="{% url 'cartage:messages' %}" class="messages up"></a>
+        <a href="{% url 'cartage:help' %}" class="help up"></a>
+        <a href="{% url 'cartage:profile' %}" class="account up"></a>
+
+        <a href="{% url 'cartage:home' %}" class="linknav"></a>
+        <a href="{% url 'cartage:search' %}" class="linknav">Trouver un binôme</a>
+        <a href="{% url 'cartage:trips'%}" class="linknavTargeted">Mes Trajets</a>
+        <a href="{% url 'cartage:messages' %}" class="linknav">Messagerie</a>
+        <a href="{% url 'cartage:help' %}" class="linknav">Aide</a>
+        <a href="{% url 'cartage:profile' %}" class="linknav">Mon Profil</a>
+    </nav>
+</div>
+    {% if trips %}
+    <table>
+        <tr class="even:bg-white odd:bg-slate-200">
+            <th>Départ</th>
+            <th>Arrivée</th>
+            <th>Date</th>
+            <th>Binôme</th>
+        </tr>
+        {% for trip in trips %}
+        <tr >
+            <th>{{ trip.start }}</th>
+            <th>{{ trip.stop }}</th>
+            <th>{{ trip.departure }}</th>
+            <th>{% if trip.student.id == user.id and trip.teacher.id != None%} {{trip.teacher.firstname}}
+                {% elif trip.student.id != None %} {{trip.student.firstname}}
+                {% else %} X {% endif %}</th>
+        </tr>
+        {% endfor %}
+    </table>
+    {% endif %}
+    <br> <br>
+    <button class="bg-yellow-500 rounded-full px-4 py-1 text-sm font-semibold text-slate
+    hover:bg-yellow-400 active:bg-yellow-700
+    focus:outline-none focus:ring focus:ring-yellow-300" id="addTrip"><img src="{% static 'content/plussign.png' %}" alt="plus sign" id="plus_sign"><p>Ajouter un trajet: </p></button>
+        <form action="{% url 'cartage:trips' %}" method="POST" id="formTrip"> {%csrf_token%}
+            <label for="start">Départ</label>
+            <fieldset id="start">
+                <label for="start_street">Rue</label>
+                <input type="text" id="start_street" name="start_street" class="placeholder:italic placeholder:text-slate-400 mt-1 border border-slate-400 rounded-md text-sm shadow-sm placeholder-slate-400
+        focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500" placeholder="Rue"> <br>
+                <label for="start_zip">Code Postal</label>
+                <input type="number" id="start_zip" name="start_zip" class="placeholder:italic placeholder:text-slate-400 mt-1 border border-slate-400 rounded-md text-sm shadow-sm placeholder-slate-400
+        focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500" placeholder="Code Postal"> <br>
+                <label for="start_city">Ville</label>
+                <input type="text" id="start_city" name="start_city" class="placeholder:italic placeholder:text-slate-400 mt-1 border border-slate-400 rounded-md text-sm shadow-sm placeholder-slate-400
+        focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500" placeholder="Ville"> <br>
+            </fieldset>
+            <label for="stop">Arrivée</label>
+            <fieldset id="stop">
+                <label for="stop_street">Rue</label>
+                <input type="text" id="stop_street" name="stop_street" class="placeholder:italic placeholder:text-slate-400 mt-1 border border-slate-400 rounded-md text-sm shadow-sm placeholder-slate-400
+        focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500" placeholder="Rue"> <br>
+                <label for="stop_zip">Code Postal</label>
+                <input type="number" id="stop_zip" name="stop_zip" class="placeholder:italic placeholder:text-slate-400 mt-1 border border-slate-400 rounded-md text-sm shadow-sm placeholder-slate-400
+        focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500" placeholder="Code Postal"> <br>
+                <label for="stop_city">Ville</label>
+                <input type="text" id="stop_city" name="stop_city" class="placeholder:italic placeholder:text-slate-400 mt-1 border border-slate-400 rounded-md text-sm shadow-sm placeholder-slate-400
+        focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500" placeholder="Ville"> <br>
+            </fieldset>
+                <label for="madeByTeacher">Je suis accompagnateur</label>
+                <input type="radio" name="madeByTeacher" id="madeByTeacher" value="1" class=" mt-1 border border-slate-400 rounded-md text-sm shadow-sm
+        focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500">
+                <label for="madeByStudent">Je suis accompagné</label>
+                <input type="radio" name="madeByTeacher" id="madeByStudent" value="0" checked class=" mt-1 border border-slate-400 rounded-md text-sm shadow-sm
+        focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500"> <br>
+                <label for="departure">Date de départ</label>
+                <input type="datetime-local" id="departure" name="departure" class=" mt-1 border border-slate-400 rounded-md text-sm shadow-sm
+        focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500"> <br>
+            <button type="submit" class="bg-blue-500 rounded-full px-4 py-1 text-sm font-semibold text-white
+            hover:bg-blue-400 active:bg-blue-700
+            focus:outline-none focus:ring focus:ring-blue-300 " id="buttonTrip">Sauvegarder</button>
+        </form>
+
+
+
+</body>
+</html>

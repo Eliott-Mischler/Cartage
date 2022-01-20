@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{user.firstname}} - Cartage</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="{% static 'js/script.js' %}" defer></script>
+</head>
+<body>
+    <div class="banner">
+    <nav id="container">
+        <a href="{% url 'cartage:home' %}" class="home up"></a>
+        <a href="{% url 'cartage:search' %}" class="findUser up"></a>
+        <a href="{% url 'cartage:trips'%}" class="trips up"></a>
+        <a href="{% url 'cartage:messages' %}" class="messages up"></a>
+        <a href="{% url 'cartage:help' %}" class="help up"></a>
+        <a href="{% url 'cartage:profile' %}" class="account upTargeted"></a>
+
+        <a href="{% url 'cartage:home' %}" class="linknav"></a>
+        <a href="{% url 'cartage:search' %}" class="linknav">Trouver un binôme</a>
+        <a href="{% url 'cartage:trips'%}" class="linknav">Mes Trajets</a>
+        <a href="{% url 'cartage:messages' %}" class="linknav">Messagerie</a>
+        <a href="{% url 'cartage:help' %}" class="linknav">Aide</a>
+        <a href="{% url 'cartage:profile' %}" class="linknavTargeted">Mon Profil</a>
+    </nav>
+    </div>
+    <div>
+    <h1>Profil</h1>
+
+    <p id="prenom" class="set">Prénom : {{user.firstname}}</p>
+
+    <button class="modify"><img src="{% static 'content/modify.png' %}" alt="bouton" id="buttonPrenom"></button>
+
+    <form action="{% url 'cartage:profile' %}" method="POST" class="modifying" id="formPrenom"> {% csrf_token %}
+        <label for="firstname">Mettre à jour prénom :</label>
+        <input type="text" name="firstname" id="firstname" required class="mt-1 border border-slate-400 rounded-md text-sm shadow-sm
+        focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500"> <br>
+        <button type="submit" class="bg-blue-500 rounded-full px-4 py-1 text-sm font-semibold text-white
+        hover:bg-blue-400 active:bg-blue-700
+        focus:outline-none focus:ring focus:ring-blue-300 ">Sauvegarder</button>
+    </form>
+
+
+    <p id="nom">Nom : {{user.lastname}}</p>
+    <button class="modify"><img src="{% static 'content/modify.png' %}" alt="modifier" id="buttonNom"></button>
+    <form action="{% url 'cartage:profile' %}" method="POST" class="modifying" id="formNom"> {% csrf_token %}
+        <label for="lastname">Mettre à jour nom:</label>
+        <input type="text" name="lastname" id="lastname" required class="mt-1 border border-slate-400 rounded-md text-sm shadow-sm
+        focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500"> <br>
+        <button type="submit" class="bg-blue-500 rounded-full px-4 py-1 text-sm font-semibold text-white
+        hover:bg-blue-400 active:bg-blue-700
+        focus:outline-none focus:ring focus:ring-blue-300 ">Sauvegarder</button>
+    </form>
+
+
+    <p id="adress">Adresse : {{user.address}}</p>
+    <button class="modify"><img src="{% static 'content/modify.png' %}" alt="modifier" id="buttonAdress"></button>
+    <form action="{% url 'cartage:profile' %}" method="POST" class="modifying" id="formAdress"> {% csrf_token %}
+        <label for="new_address">Entrez une adresse:</label>
+        <fieldset id="new_address"> <br>
+        <label for="street">Rue</label>
+        <input type="text" name="street" id="street" required class="mt-1 border border-slate-400 rounded-md text-sm shadow-sm
+        focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500">  <br>
+        <label for="zip_code">Code Postal</label>
+        <input type="number" name="zip_code" id="zip_code" required class="mt-1 border border-slate-400 rounded-md text-sm shadow-sm
+        focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500"> <br>
+        <label for="city">Ville</label>
+        <input type="text" name="city" id="city" required class="mt-1 border border-slate-400 rounded-md text-sm shadow-sm
+        focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500"> <br>
+        </fieldset>
+        <button type="submit" class="bg-blue-500 rounded-full px-4 py-1 text-sm font-semibold text-white
+        hover:bg-blue-400 active:bg-blue-700
+        focus:outline-none focus:ring focus:ring-blue-300 ">Sauvegarder</button>
+    </form>
+
+
+    <p id="mail">Adresse mail : {{user.email}}</p>
+    <button class="modify"><img src="{% static 'content/modify.png' %}" alt="modifier" id="buttonMail"></button>
+    <form action="{% url 'cartage:profile' %}" method="POST" class="modifying" id="formMail"> {% csrf_token %}
+        <label for="email">Nouvelle adresse mail:</label>
+        <input type="email" name="email" id="email" required class="mt-1 border border-slate-400 rounded-md text-sm shadow-sm
+        focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500"> <br>
+        <button type="submit" class="bg-blue-500 rounded-full px-4 py-1 text-sm font-semibold text-white
+        hover:bg-blue-400 active:bg-blue-700
+        focus:outline-none focus:ring focus:ring-blue-300 ">Sauvegarder</button>
+    </form>
+
+    <p id="phone">N° de téléphone : {{user.tel}}</p>
+    <button class="modify"><img src="{% static 'content/modify.png' %}" alt="modifier" id="buttonPhone"></button>
+    <form action="{% url 'cartage:profile' %}" method="POST" class="modifying" id="formPhone"> {% csrf_token %}
+        <label for="tel">Nouveau numéro:</label>
+        <input type="number" name="tel" id="tel" required class="mt-1 border border-slate-400 rounded-md text-sm shadow-sm
+        focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500">
+        <button type="submit" class="bg-blue-500 rounded-full px-4 py-1 text-sm font-semibold text-white
+        hover:bg-blue-400 active:bg-blue-700
+        focus:outline-none focus:ring focus:ring-blue-300 ">Sauvegarder</button>
+    </form>
+
+    <p id="car">{% if user.car %} Je dispose d'une voiture {% else %} Je n'ai pas de voiture {% endif %}  </p>
+    <button class="modify"><img src="{% static 'content/modify.png' %}" alt="modifier" id="buttonCar"></button>
+    <form action="{% url 'cartage:profile' %}" method="POST" class="modifying" id="formCar"> {% csrf_token %}
+        <fieldset>
+        <label for="car1">Je dispose d'une voiture</label>
+        <input type="radio" name="car" id="car1" value="1"{% if user.car %} checked {% endif %} class="mt-1 border border-slate-400 rounded-md text-sm shadow-sm
+        focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500">
+        <label for="car2">Je n'ai pas d'une voiture</label>
+        <input type="radio" name="car" id="car2" value="0"{% if not user.car %} checked {% endif %} class="mt-1 border border-slate-400 rounded-md text-sm shadow-sm
+        focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500">
+        <button type="submit" class="bg-blue-500 rounded-full px-4 py-1 text-sm font-semibold text-white
+        hover:bg-blue-400 active:bg-blue-700
+        focus:outline-none focus:ring focus:ring-blue-300 ">Mettre à jour</button>
+        </fieldset>
+    </form>
+
+    <p id="p_hours">Mes heures de conduite accompagnée : {{user.hours}} </p>
+    <button class="modify"><img src="{% static 'content/modify.png' %}" alt="modifier" id="buttonHours"></button>
+    <form action="{% url 'cartage:profile' %}" method="POST" class="modifying" id="formHours"> {% csrf_token %}
+        <label for="hours">Changer mes heures</label>
+        <input type="number" name="hours" id="hours" required >
+        <button type="submit" class="bg-blue-500 rounded-full px-4 py-1 text-sm font-semibold text-white
+        hover:bg-blue-400 active:bg-blue-700
+        focus:outline-none focus:ring focus:ring-blue-300 ">Sauvegarder</button>
+    </form>
+
+    <p>Ma note moyenne (sur 5) : {% if user.total_votes %} {{user.rating}} {% else %} Pas de notes {% endif %}</p>
+    <p>Nombre d'appréciations : {{user.total_votes}}</p>
+
+    <button id="buttonPassword" class="bg-orange-500 rounded-full px-4 py-1 text-sm font-semibold text-white
+    hover:bg-orange-400 active:bg-orange-700
+    focus:outline-none focus:ring focus:ring-orange-300 ">Changer Mot de Passe</button>
+    <form action="{% url 'cartage:profile' %}" method="POST" class="modifying" id="formPassword"> {% csrf_token %}
+        <label for="new_password">Changer de mot de passe</label>
+        <fieldset id="new_password">
+            <label for="password">Nouveau mot de passe :</label>
+            <input type="password" name="password" id="password" required class="mt-1 border border-slate-400 rounded-md text-sm shadow-sm
+        focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500"> <br>
+            <label for="current_password">Mot de passe actuel:</label>
+            <input type="password" name="current_password" id="current_password" required class="mt-1 border border-slate-400 rounded-md text-sm shadow-sm
+        focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500"> <br>
+            <button type="submit" class="bg-blue-500 rounded-full px-4 py-1 text-sm font-semibold text-white
+        hover:bg-blue-400 active:bg-blue-700
+        focus:outline-none focus:ring focus:ring-blue-300 ">Sauvegarder</button>
+        </fieldset>
+    </form>
+        </div>
+
+</body>
+</html>

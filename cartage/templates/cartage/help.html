@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="{% static 'style.css'%}">
+</head>
+
+<body>
+    <div class="banner">
+    <nav id="container">
+        <a href="{% url 'cartage:home' %}" class="home up"></a>
+        <a href="{% url 'cartage:search' %}" class="findUser up"></a>
+        <a href="{% url 'cartage:trips'%}" class="trips up"></a>
+        <a href="{% url 'cartage:messages' %}" class="messages up"></a>
+        <a href="{% url 'cartage:help' %}" class="help upTargeted"></a>
+        <a href="{% url 'cartage:profile' %}" class="account up"></a>
+
+        <a href="{% url 'cartage:home' %}" class="linknav"></a>
+        <a href="{% url 'cartage:search' %}" class="linknav">Trouver un binôme</a>
+        <a href="{% url 'cartage:trips'%}" class="linknav">Mes Trajets</a>
+        <a href="{% url 'cartage:messages' %}" class="linknav">Messagerie</a>
+        <a href="{% url 'cartage:help' %}" class="linknavTargeted">Aide</a>
+        <a href="{% url 'cartage:profile' %}" class="linknav">Mon Profil</a>
+    </nav>
+</div>
+
+    <div class="helpDiv">
+    <h1>Les réponses à vos questions :</h1>
+    <ul>
+        <li>Qui sommes-nous</li>
+        <p>Nous sommes de jeunes entrepreneurs motivés et altruistes, qui avons enfin trouvé un moyen d'aider notre
+            prochain tout en exploitant nos compétences.</p>
+            <br>
+
+        <li>Pourquoi Cartage ?</li>
+        <p>L'application Cartage est née du désir de jeunes entrepreneurs de mettre leurs ressources et leur motivation
+            au service du plus grand nombre, en proposant un service innovant, puissant et fonctionnel. Leur but :
+            permettre à tous ceux qui ont du mal à trouver un accompagnateur pour effectuer la conduite accompagnée
+            de pouvoir le faire dans un cadre sécurisé, simple et bienveillant.</p>
+            <br>
+
+        <li>Accessibilité et valeurs :</li>
+        <p>Nous sommes fiers de proposer notre application à toutes les personnes présentant un handicap, quel qu'il soit.
+            L'inclusivité est une de nos priorités majeures, et nous travaillons en permanence avec des personnes issues
+            de minorités.</p>
+            <br>
+
+        <li>Pourquoi un service payant ?</li>
+        <p>Nous avons œuvré au maximum pour proposer un service gratuit, car notre priorité était d'aider un maximum
+            de personnes. Malheureusement, le coût des serveurs et la réalité du marché nous ont rattrapé. C'est pourquoi
+            nous prenons une commission modique de 20% sur toutes les transactions effectuées sur notre application.</p>
+            <br>
+
+        <li>Un problème lié à un conducteur ?</li>
+        <p>N'hésitez pas à utiliser notre système d'évaluation afin de déconseiller ce conducteur à la communauté.
+            Vous rendrez ainsi service à tout le monde en améliorant la qualité du service dans son ensemble.
+            Bravo à vous !
+        </p>
+        <br>
+
+        <li>Les Cartage Fidelity Points®</li>
+        <p>En utilisant notre service vous pourrez bientôt cumuler des points de fidélité afin d'avoir accès
+            à des récompenses réservées à nos utilisateurs les plus dévoués.
+        </p>
+
+    </ul>
+        </div>
+
+</body>
+
+</html>
