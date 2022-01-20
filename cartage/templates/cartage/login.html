@@ -1,27 +1,4 @@
-
 <!DOCTYPE html>
-<!---
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Se connecter</title>
-</head>
-<body>
-<form action="{% url 'cartage:landingL'%}" method="POST"> {%csrf_token%}
-
-  <fieldset>
-      <label for="email">Adresse mail</label>
-    <input type="email" name="email" id="email" required> <br>
-      <label for="password">Mot de passe</label>
-    <input type="password" name="password" id="password" required> <br>
-    <button type="submit">Se connecter</button>
-  </fieldset>
-</form>
-
-</body>
-</html>
- --->
-
 <html lang="en">
 <head>
     {% load static %}
@@ -33,7 +10,7 @@
 <body>
 <form action="{% url 'cartage:landingL'%}" method="POST"> {%csrf_token%}
 
-  <fieldset class="border-2 rounded shadow-sm border-slate-400 formulaire">
+  <fieldset class="border-2 rounded shadow-sm border-slate-400 formulaire bg-slate-100">
       <label for="email">Adresse mail</label>
     <input type="email" name="email" id="email" required class="placeholder:italic placeholder:text-slate-400 mt-1 border border-slate-400 rounded-md text-sm shadow-sm placeholder-slate-400
     focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500"> <br>
