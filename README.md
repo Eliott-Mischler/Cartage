@@ -1,5 +1,7 @@
 # Cartage
-Mini page "Cartage" Django réalisée dans le cadre de ma formation de CDA. Vous y trouverez un site (extrêmement) rudimentaire avec de l'authentification (non sécurisée), une navigation basique et un système de contacts / messagerie. L'idée derrière ce mini-projet de quelques jours était de s'appuyer sur un concept trouvé en groupe avec Yann Nivot, Benoît Hert, et Pierre Napoletano d'une application de covoiturage intelligent, regrouper des conducteurs expérimentés et des apprenants réalisant les mêmes trajets pour que l'apprennant fasse ses heures de conduite accompagnée, tandis que le conducteur expérimenté est légèrement rémunéré.
+Mini page "Cartage" Django réalisée dans le cadre de ma formation de CDA. Vous y trouverez un site (extrêmement) rudimentaire avec de l'authentification (non sécurisée), une navigation basique et un système de contacts / messagerie. 
+
+L'idée derrière ce mini-projet de quelques jours était de s'appuyer sur un concept trouvé en groupe avec Yann Nivot, Benoît Hert, et Pierre Napoletano d'une application de covoiturage intelligent, regrouper des conducteurs expérimentés et des apprenants réalisant les mêmes trajets pour que l'apprennant fasse ses heures de conduite accompagnée, tandis que le conducteur expérimenté est légèrement rémunéré.
 
 ## Installation
 - Cloner ce repo via `git clone https://github.com/Eliott-Mischler/Cartage.git`
